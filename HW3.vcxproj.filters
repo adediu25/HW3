@@ -39,6 +39,9 @@
     <ClInclude Include="Scheduler.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="GlobalClock.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Person.cpp">
@@ -66,6 +69,9 @@
       <Filter>Resource Files</Filter>
     </ClCompile>
     <ClCompile Include="Scheduler.cpp">
+      <Filter>Resource Files</Filter>
+    </ClCompile>
+    <ClCompile Include="GlobalClock.cpp">
       <Filter>Resource Files</Filter>
     </ClCompile>
   </ItemGroup>

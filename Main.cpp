@@ -1,6 +1,6 @@
 #include <iostream>
 #include "Building.h"
-#include "Clock.h"
+#include "GlobalClock.h"
 #include "Elevator.h"
 #include "Scheduler.h"
 
@@ -8,7 +8,7 @@ using namespace std;
 
 int main() {
 	// Global clock declaration
-	Clock clk;
+	//Clock clk;
 
 	// Create vector of floors for the building ERC
 	// With floors 3-8
@@ -28,7 +28,7 @@ int main() {
 	
 	// Create vector of Person objects to send into simulator
 	vector<Person> people;
-	people.push_back(Person(6, 3));
+	people.push_back(Person(8, 3));
 	people.push_back(Person(8, 3));
 	people.push_back(Person(3, 6));
 	people.push_back(Person(4, 7));
@@ -43,10 +43,28 @@ int main() {
 	Scheduler scheduler = Scheduler(ERC, people);
 
 	scheduler.sendPerson();
+	scheduler.sendPerson();
+	elevator.load();
+	elevator.currentFloor += 5;
+	cout << elevator.stopAtFloor() << endl;
+	clk.advanceTime(5);
+	elevator.unload();
+	//cout << elevator.upQueue.top().getDest();
+
 	//ERC->getFloor(3).addPerson(people[0]);
 	//ERC->getFloor(3).addPerson(people[1]);
-	cout << ERC->getFloor(3).removePerson().getDest() << endl;
-	//cout << ERC.getFloor(3).removePerson().getDest() << endl;
+	//cout << ERC->getFloor(3).removePerson().getDest() << endl;
+	//cout << ERC->getFloor(3).removePerson().getDest() << endl;
+
+	//elevator.nextFloor();
+
+	/*Door d;
+
+	cout << clk.getTime() << endl;
+
+	d.openDoor();
+	d.closeDoor();
+	cout << clk.getTime() << endl;*/
 
 	delete ERC;
 

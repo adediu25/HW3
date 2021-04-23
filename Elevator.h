@@ -7,7 +7,7 @@
 const int MAX_CAPACITY = 5;
 
 class Elevator {
-private:
+public:
 	Building* building;
 	int currentFloor;
 	bool isGoingUp;
@@ -20,5 +20,10 @@ public:
 	void nextFloor();
 	void enterPerson(Person);
 	Person exitPerson();
-	bool isFull();
+	bool isFull() const;
+	void advanceFloor();
+	void updateQueues();
+	void load();
+	void unload();
+	bool stopAtFloor() const;
 };

@@ -27,7 +27,8 @@ void Floor::addPerson(const Person& person)
 
 Person Floor::removePerson()
 {
-	Person ret = Person(elevatorQueue.front().getDest(), elevatorQueue.front().getFloor());
+	//Person ret = Person(elevatorQueue.front().getDest(), elevatorQueue.front().getFloor());
+	Person ret = elevatorQueue.front();
 	elevatorQueue.pop();
 	if (elevatorQueue.empty())
 		button.reset();
