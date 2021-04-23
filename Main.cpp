@@ -44,6 +44,7 @@ int main() {
 	// Create Scheduler and send in vector of Persons
 	Scheduler scheduler = Scheduler(ERC, people);
 
+	// Send all people into building
 	scheduler.sendPerson();
 	scheduler.sendPerson();
 	scheduler.sendPerson();
@@ -56,9 +57,8 @@ int main() {
 	scheduler.sendPerson();
 
 	// Run sim
-
 	elevator.getDoor().openDoor();
-	while (elevator.numServed() < 3) {
+	while (elevator.numServed() < 6) {
 		elevator.load();
 		elevator.getDoor().closeDoor();
 		clk.advanceTime(1);
