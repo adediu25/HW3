@@ -1,4 +1,5 @@
 #include <iostream>
+#include <random>
 #include "Building.h"
 #include "GlobalClock.h"
 #include "Elevator.h"
@@ -9,6 +10,7 @@ using namespace std;
 int main() {
 	// Global clock declaration
 	//Clock clk;
+	srand(time(0));
 
 	// Create vector of floors for the building ERC
 	// With floors 3-8
@@ -28,7 +30,7 @@ int main() {
 	
 	// Create vector of Person objects to send into simulator
 	vector<Person> people;
-	people.push_back(Person(8, 3));
+	people.push_back(Person(6, 3));
 	people.push_back(Person(8, 3));
 	people.push_back(Person(3, 6));
 	people.push_back(Person(4, 7));
@@ -37,34 +39,39 @@ int main() {
 	people.push_back(Person(7, 3));
 	people.push_back(Person(4, 7));
 	people.push_back(Person(3, 8));
-	people.push_back(Person(6, 5));
+	people.push_back(Person(3, 5));
 
 	// Create Scheduler and send in vector of Persons
 	Scheduler scheduler = Scheduler(ERC, people);
 
 	scheduler.sendPerson();
 	scheduler.sendPerson();
-	elevator.load();
-	elevator.currentFloor += 5;
-	cout << elevator.stopAtFloor() << endl;
-	clk.advanceTime(5);
-	elevator.unload();
-	//cout << elevator.upQueue.top().getDest();
+	scheduler.sendPerson();
+	scheduler.sendPerson();
+	scheduler.sendPerson();
+	scheduler.sendPerson();
+	scheduler.sendPerson();
+	scheduler.sendPerson();
+	scheduler.sendPerson();
+	scheduler.sendPerson();
 
-	//ERC->getFloor(3).addPerson(people[0]);
-	//ERC->getFloor(3).addPerson(people[1]);
-	//cout << ERC->getFloor(3).removePerson().getDest() << endl;
-	//cout << ERC->getFloor(3).removePerson().getDest() << endl;
+	// Run sim
 
-	//elevator.nextFloor();
+	elevator.getDoor().openDoor();
+	while (elevator.numServed() < 3) {
+		elevator.load();
+		elevator.getDoor().closeDoor();
+		clk.advanceTime(1);
+		while (!elevator.stopAtFloor()) {
+			elevator.advanceFloor();
+		}
+		clk.advanceTime(1);
+		elevator.getDoor().openDoor();
+		elevator.unload();
+	}
+	elevator.getDoor().closeDoor();
 
-	/*Door d;
-
-	cout << clk.getTime() << endl;
-
-	d.openDoor();
-	d.closeDoor();
-	cout << clk.getTime() << endl;*/
+	cout << elevator.getAvgWait();
 
 	delete ERC;
 

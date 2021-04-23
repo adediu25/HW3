@@ -14,10 +14,12 @@ public:
 	std::priority_queue<Person> upQueue;
 	std::priority_queue<Person> downQueue;
 	Door door;
+	int totalWait;
+	int totalPass;
 public:
 	Elevator(Building*);
 	int getFloor() const;
-	void nextFloor();
+	Door& getDoor();
 	void enterPerson(Person);
 	Person exitPerson();
 	bool isFull() const;
@@ -26,4 +28,6 @@ public:
 	void load();
 	void unload();
 	bool stopAtFloor() const;
+	float getAvgWait() const;
+	int numServed() const;
 };

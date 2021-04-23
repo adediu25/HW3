@@ -20,6 +20,11 @@ void Person::setFloor(int flr)
 	currFloor = flr;
 }
 
+void Person::setTime(int time)
+{
+	startTime = time;
+}
+
 int Person::getDest() const
 {
 	return destFloor;

@@ -9,6 +9,7 @@ public:
 	Person(int, int);
 	Person();
 	void setFloor(int);
+	void setTime(int);
 	int getDest() const;
 	int getFloor() const;
 	int getTime() const;
